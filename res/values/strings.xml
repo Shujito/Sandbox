@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Sandbox</string>
+    <!-- buttons -->
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+
+</resources>
