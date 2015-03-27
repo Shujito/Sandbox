@@ -28,7 +28,19 @@ public class Database extends SQLiteOpenHelper
     }
     
     @Override
+    public void onOpen(SQLiteDatabase db)
+    {
+        super.onOpen(db);
+        if (!db.isReadOnly())
+            db.execSQL("pragma foreign_keys=on;");
+    }
+    
+    @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
+        db.execSQL("create temporary table temp_touhous as select * from touhous");
+        db.execSQL("drop table touhous");
+        this.onCreate(db);
+        // TODO: build insert using pragma table_info
     }
 }

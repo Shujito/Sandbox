@@ -12,18 +12,10 @@ public class SandboxApplication extends Application
         return instance;
     }
     
-    private Database mDatabase;
-    
     @Override
     public void onCreate()
     {
         super.onCreate();
         instance = this;
-        this.mDatabase = new Database(this);
-    }
-    
-    public Database getDatabase()
-    {
-        return this.mDatabase;
     }
 }
