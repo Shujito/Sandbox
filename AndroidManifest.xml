@@ -5,7 +5,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="22" />
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
@@ -22,6 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="org.shujito.sandbox.FloatingViewActivity"
+            android:label="@string/activity_floating" >
+        </activity>
+        <activity
+            android:name="org.shujito.sandbox.TouhousActivity"
+            android:label="@string/activity_touhous" >
+        </activity>
+
+        <provider
+            android:name="org.shujito.sandbox.Provider"
+            android:authorities="org.shujito.sandbox"
+            android:exported="false" />
 
         <service android:name="org.shujito.sandbox.FloatingViewService" >
         </service>

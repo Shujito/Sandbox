@@ -7,10 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class Database extends SQLiteOpenHelper
 {
     public static final String TAG = Database.class.getSimpleName();
+    public static final int VERSION = 0x0001;
     
     public Database(Context context)
     {
-        super(context, context.getPackageName() + ".db3", null, 1);
+        super(context, context.getPackageName() + ".db3", null, VERSION);
     }
     
     @Override

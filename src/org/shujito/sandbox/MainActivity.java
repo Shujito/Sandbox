@@ -1,12 +1,15 @@
 package org.shujito.sandbox;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.widget.ListView;
 
-public class MainActivity extends Activity implements OnClickListener
+public class MainActivity extends ListActivity
 {
     public static final String TAG = MainActivity.class.getSimpleName();
     
@@ -14,21 +17,26 @@ public class MainActivity extends Activity implements OnClickListener
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_main);
-        this.findViewById(R.id.btn_start).setOnClickListener(this);
-        this.findViewById(R.id.btn_stop).setOnClickListener(this);
+        try
+        {
+            this.setListAdapter(new ActivitiesAdapter(this));
+        }
+        catch (NameNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
     
     @Override
-    public void onClick(View v)
+    protected void onListItemClick(ListView l, View v, int position, long id)
     {
-        if (v.getId() == R.id.btn_start)
+        ActivityInfo ainfo = ActivityInfo.class.cast(l.getAdapter().getItem(position));
+        if (TextUtils.equals(ainfo.name, this.getClass().getName()))
         {
-            this.startService(new Intent(this, FloatingViewService.class));
+            return;
         }
-        if (v.getId() == R.id.btn_stop)
-        {
-            this.stopService(new Intent(this, FloatingViewService.class));
-        }
+        Intent intent = new Intent();
+        intent.setClassName(ainfo.applicationInfo.packageName, ainfo.name);
+        this.startActivity(intent);
     }
 }

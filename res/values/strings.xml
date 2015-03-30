@@ -1,6 +1,9 @@
 <resources>
 
     <string name="app_name">Sandbox</string>
+    <!-- activities -->
+    <string name="activity_floating">Floating view</string>
+    <string name="activity_touhous">Touhous database</string>
     <!-- buttons -->
     <string name="start">Start</string>
     <string name="stop">Stop</string>
