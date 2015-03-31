@@ -8,5 +8,7 @@
     <!-- buttons -->
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="toggle_x">Toggle X</string>
+    <string name="toggle_y">Toggle Y</string>
 
 </resources>

@@ -5,19 +5,21 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 
-public class SurfaceActivity extends Activity
+public class SurfaceActivity extends Activity implements OnClickListener
 {
     public static final String TAG = SurfaceActivity.class.getSimpleName();
+    private Surface mSurface;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
-        {
-        }
         this.setContentView(R.layout.activity_surface);
+        this.mSurface = (Surface) this.findViewById(R.id.surface);
+        this.findViewById(R.id.btn_toggle_x).setOnClickListener(this);
+        this.findViewById(R.id.btn_toggle_y).setOnClickListener(this);
     }
     
     @Override
@@ -33,5 +35,17 @@ public class SurfaceActivity extends Activity
         this.getWindow().getDecorView().setSystemUiVisibility(uiVisibility);
     }
     
-    
+    /* OnClickListener */
+    @Override
+    public void onClick(View v)
+    {
+        if (v.getId() == R.id.btn_toggle_x)
+        {
+            this.mSurface.toggleX();
+        }
+        if (v.getId() == R.id.btn_toggle_y)
+        {
+            this.mSurface.toggleY();
+        }
+    }
 }

@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:drawable/sym_def_app_icon"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
     <org.shujito.sandbox.Surface
+        android:id="@+id/surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
         android:focusable="false" />
 
-</LinearLayout>
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#3fff"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btn_toggle_x"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_weight="1"
+            android:text="@string/toggle_x"
+            android:textColor="#ccc" />
+
+        <Button
+            android:id="@+id/btn_toggle_y"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_weight="1"
+            android:text="@string/toggle_y"
+            android:textColor="#ccc" />
+    </LinearLayout>
+
+</FrameLayout>

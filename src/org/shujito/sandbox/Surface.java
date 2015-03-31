@@ -1,12 +1,11 @@
 package org.shujito.sandbox;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
-import android.graphics.PixelFormat;
-import android.graphics.PorterDuff;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -19,8 +18,8 @@ public class Surface extends SurfaceView
 {
     public static final String TAG = Surface.class.getSimpleName();
     private Thread mRenderThread;
-    private boolean mRunning;
     private Paint mPaint;
+    private boolean mRunning;
     private int mWidth = 0;
     private int mHeight = 0;
     private float x = 0;
@@ -34,14 +33,18 @@ public class Surface extends SurfaceView
         this(context, null);
     }
     
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     public Surface(Context context, AttributeSet attrs)
     {
         super(context, attrs);
+        if (this.isInEditMode())
+            return;
         this.mPaint = new Paint();
         this.mPaint.setStyle(Style.FILL);
-        this.mPaint.setColor(Color.BLACK);
-        this.setZOrderOnTop(true);
-        this.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+        this.mPaint.setColor(0xffccccff);
+        //this.setZOrderOnTop(true);
+        //this.setZOrderMediaOverlay(true);
+        //this.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         this.getHolder().addCallback(this);
     }
     
@@ -71,7 +74,8 @@ public class Surface extends SurfaceView
                 this.reverseY = true;
             if (this.y < 0)
                 this.reverseY = false;
-            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            //canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            canvas.drawColor(0xff333333);
             canvas.drawCircle(this.x, this.y, 50, this.mPaint);
             canvas.scale(4, 4);
             canvas.drawText(String.format("w:'%d' h:'%d'", this.mWidth, this.mHeight), 10, 20, this.mPaint);
@@ -133,5 +137,15 @@ public class Surface extends SurfaceView
     public void resume()
     {
         this.mRunning = true;
+    }
+    
+    public void toggleX()
+    {
+        this.reverseX = !this.reverseX;
+    }
+    
+    public void toggleY()
+    {
+        this.reverseY = !this.reverseY;
     }
 }
