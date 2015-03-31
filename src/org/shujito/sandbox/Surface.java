@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -26,7 +27,7 @@ public class Surface extends SurfaceView
     private float y = 0;
     private boolean reverseX = false;
     private boolean reverseY = false;
-    private float speed = 10;
+    private float speed = 5;
     
     public Surface(Context context)
     {
@@ -71,7 +72,7 @@ public class Surface extends SurfaceView
             if (this.y < 0)
                 this.reverseY = false;
             canvas.save();
-            canvas.drawColor(0x20ffffcc);
+            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             canvas.drawCircle(this.x, this.y, 50, this.mPaint);
             //canvas.scale(4, 4);
             //canvas.drawText(String.format("w:'%d' h:'%d'", width, height), 10, 20, this.mPaint);
