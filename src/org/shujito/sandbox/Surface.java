@@ -71,12 +71,10 @@ public class Surface extends SurfaceView
                 this.reverseY = true;
             if (this.y < 0)
                 this.reverseY = false;
-            canvas.save();
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             canvas.drawCircle(this.x, this.y, 50, this.mPaint);
-            //canvas.scale(4, 4);
-            //canvas.drawText(String.format("w:'%d' h:'%d'", width, height), 10, 20, this.mPaint);
-            canvas.restore();
+            canvas.scale(4, 4);
+            canvas.drawText(String.format("w:'%d' h:'%d'", this.mWidth, this.mHeight), 10, 20, this.mPaint);
             this.getHolder().unlockCanvasAndPost(canvas);
             try
             {
