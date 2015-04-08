@@ -37,6 +37,10 @@
             android:label="@string/activity_surface"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
+        <activity
+            android:name="org.shujito.sandbox.activities.GLESActivity"
+            android:label="@string/activity_gles" >
+        </activity>
 
         <provider
             android:name="org.shujito.sandbox.providers.Provider"

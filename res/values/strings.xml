@@ -5,6 +5,7 @@
     <string name="activity_floating">Floating view</string>
     <string name="activity_touhous">Touhous database</string>
     <string name="activity_surface">Surface for game</string>
+    <string name="activity_gles">Opengl View</string>
     <!-- buttons -->
     <string name="start">Start</string>
     <string name="stop">Stop</string>
