@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <org.shujito.sandbox.Surface
+    <org.shujito.sandbox.widget.Surface
         android:id="@+id/surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

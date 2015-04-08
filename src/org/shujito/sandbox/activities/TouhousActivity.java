@@ -1,4 +1,4 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.activities;
 
 import android.app.ListActivity;
 import android.os.Bundle;

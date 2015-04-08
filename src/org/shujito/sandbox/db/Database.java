@@ -1,4 +1,4 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

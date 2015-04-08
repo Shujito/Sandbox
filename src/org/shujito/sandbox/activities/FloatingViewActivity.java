@@ -1,4 +1,7 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.activities;
+
+import org.shujito.sandbox.R;
+import org.shujito.sandbox.services.FloatingViewService;
 
 import android.app.Activity;
 import android.content.Intent;

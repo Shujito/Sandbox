@@ -1,4 +1,6 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.providers;
+
+import org.shujito.sandbox.db.Database;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

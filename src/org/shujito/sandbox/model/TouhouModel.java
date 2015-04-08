@@ -1,4 +1,4 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.model;
 
 import java.util.Date;
 

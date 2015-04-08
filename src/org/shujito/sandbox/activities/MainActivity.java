@@ -1,4 +1,6 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.activities;
+
+import org.shujito.sandbox.adapters.ActivitiesAdapter;
 
 import android.app.ListActivity;
 import android.content.Intent;

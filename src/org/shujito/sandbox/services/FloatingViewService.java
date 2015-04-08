@@ -1,4 +1,4 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.services;
 
 import android.annotation.SuppressLint;
 import android.app.Service;

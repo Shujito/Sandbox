@@ -32,20 +32,6 @@ public class Snips
         byte[] ivBytes = new byte[16];
         SecureRandom.getInstance("SHA1PRNG").nextBytes(keyBytes);
         SecureRandom.getInstance("SHA1PRNG").nextBytes(ivBytes);
-        /*
-        UUID key = UUID.randomUUID();
-        UUID iv = UUID.randomUUID();
-        byte[] keyBytes = ByteBuffer
-            .allocate(16)
-            .putLong(key.getMostSignificantBits())
-            .putLong(key.getLeastSignificantBits())
-            .array();
-        byte[] ivBytes = ByteBuffer
-            .allocate(16)
-            .putLong(iv.getMostSignificantBits())
-            .putLong(iv.getLeastSignificantBits())
-            .array();
-        //*/
         Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
         SecretKeySpec sks = new SecretKeySpec(keyBytes, "AES");
         IvParameterSpec ivps = new IvParameterSpec(ivBytes);

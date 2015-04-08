@@ -1,7 +1,10 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.shujito.sandbox.R;
+import org.shujito.sandbox.activities.MainActivity;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;

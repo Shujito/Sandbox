@@ -7,6 +7,9 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="22" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
@@ -14,7 +17,7 @@
         android:allowBackup="true"
         android:icon="@android:drawable/sym_def_app_icon"
         android:label="@string/app_name" >
-        <activity android:name="org.shujito.sandbox.MainActivity" >
+        <activity android:name="org.shujito.sandbox.activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,25 +25,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.shujito.sandbox.FloatingViewActivity"
+            android:name="org.shujito.sandbox.activities.FloatingViewActivity"
             android:label="@string/activity_floating" >
         </activity>
         <activity
-            android:name="org.shujito.sandbox.TouhousActivity"
+            android:name="org.shujito.sandbox.activities.TouhousActivity"
             android:label="@string/activity_touhous" >
         </activity>
         <activity
-            android:name="org.shujito.sandbox.SurfaceActivity"
+            android:name="org.shujito.sandbox.activities.SurfaceActivity"
             android:label="@string/activity_surface"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
 
         <provider
-            android:name="org.shujito.sandbox.Provider"
+            android:name="org.shujito.sandbox.providers.Provider"
             android:authorities="org.shujito.sandbox"
             android:exported="false" />
 
-        <service android:name="org.shujito.sandbox.FloatingViewService" >
+        <service android:name="org.shujito.sandbox.services.FloatingViewService" >
         </service>
     </application>
 

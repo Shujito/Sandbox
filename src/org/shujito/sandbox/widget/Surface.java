@@ -1,4 +1,4 @@
-package org.shujito.sandbox;
+package org.shujito.sandbox.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
