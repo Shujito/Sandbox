@@ -12,6 +12,10 @@ public class Provider extends ContentProvider
     public static final String TAG = Provider.class.getSimpleName();
     private Database mDatabase = null;
     
+    public Provider()
+    {
+    }
+    
     @Override
     public boolean onCreate()
     {
