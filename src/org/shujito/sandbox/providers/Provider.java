@@ -4,6 +4,7 @@ import org.shujito.sandbox.db.Database;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 
@@ -11,15 +12,13 @@ public class Provider extends ContentProvider
 {
     public static final String TAG = Provider.class.getSimpleName();
     private Database mDatabase = null;
-    
-    public Provider()
-    {
-    }
+    private UriMatcher mMatcher = null;
     
     @Override
     public boolean onCreate()
     {
         this.mDatabase = new Database(this.getContext().getApplicationContext());
+        this.mMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         return true;
     }
     
