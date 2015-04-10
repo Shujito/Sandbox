@@ -23,6 +23,12 @@ public class GLRenderer implements Renderer
         0, 128,
         128, 128,
     };
+    final float[] vVerticesBG = {
+        -320, 0,
+        320, 0,
+        -320, 480,
+        320, 480,
+    };
     final float[] vCoords = {
         0, 0,
         1, 0,
@@ -32,6 +38,7 @@ public class GLRenderer implements Renderer
     final int[] textures = new int[4];
     final Buffer vertices;
     final Buffer coords;
+    final Buffer verticesBG;
     
     public GLRenderer()
     {
@@ -46,6 +53,12 @@ public class GLRenderer implements Renderer
             .order(ByteOrder.nativeOrder())
             .asFloatBuffer()
             .put(this.vCoords)
+            .position(0);
+        this.verticesBG = ByteBuffer
+            .allocateDirect(this.vVerticesBG.length * 4)
+            .order(ByteOrder.nativeOrder())
+            .asFloatBuffer()
+            .put(this.vVerticesBG)
             .position(0);
     }
     
@@ -137,7 +150,12 @@ public class GLRenderer implements Renderer
         GLES11.glVertexPointer(2, GLES11.GL_FLOAT, 0, this.vertices);
         GLES11.glMatrixMode(GLES11.GL_MODELVIEW);
         GLES11.glPushMatrix();
+        GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[3]);
+        GLES11.glVertexPointer(2, GLES11.GL_FLOAT, 0, this.verticesBG);
+        GLES11.glColor4f(1, 1, 1, 1);
+        GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
         // draw!
+        GLES11.glVertexPointer(2, GLES11.GL_FLOAT, 0, this.vertices);
         GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
         GLES11.glColor4f(1, 0, 0, 1);
         GLES11.glTranslatef(0, 32, 0);
