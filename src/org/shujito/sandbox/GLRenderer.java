@@ -29,7 +29,7 @@ public class GLRenderer implements Renderer
         0, 1,
         1, 1,
     };
-    final int[] textures = new int[2];
+    final int[] textures = new int[4];
     final Buffer vertices;
     final Buffer coords;
     
@@ -71,6 +71,32 @@ public class GLRenderer implements Renderer
                 GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[1]);
                 InputStream is = SandboxApplication.getInstance().getAssets().open("heart.png");
                 Bitmap bmp = BitmapFactory.decodeStream(is);
+                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MAG_FILTER, GLES11.GL_LINEAR);
+                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MIN_FILTER, GLES11.GL_LINEAR);
+                GLUtils.texImage2D(GLES11.GL_TEXTURE_2D, 0, bmp, 0);
+                GLES11.glEnable(GLES11.GL_BLEND);
+                GLES11.glBlendFunc(GLES11.GL_SRC_ALPHA, GLES11.GL_ONE_MINUS_SRC_ALPHA);
+                bmp.recycle();
+            }
+            {
+                GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[2]);
+                InputStream is = SandboxApplication.getInstance().getAssets().open("disc.png");
+                Bitmap bmp = BitmapFactory.decodeStream(is);
+                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_WRAP_S, GLES11.GL_CLAMP_TO_EDGE);
+                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_WRAP_T, GLES11.GL_CLAMP_TO_EDGE);
+                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MAG_FILTER, GLES11.GL_LINEAR);
+                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MIN_FILTER, GLES11.GL_LINEAR);
+                GLUtils.texImage2D(GLES11.GL_TEXTURE_2D, 0, bmp, 0);
+                GLES11.glEnable(GLES11.GL_BLEND);
+                GLES11.glBlendFunc(GLES11.GL_SRC_ALPHA, GLES11.GL_ONE_MINUS_SRC_ALPHA);
+                bmp.recycle();
+            }
+            {
+                GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[3]);
+                InputStream is = SandboxApplication.getInstance().getAssets().open("bg.png");
+                Bitmap bmp = BitmapFactory.decodeStream(is);
+                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_WRAP_S, GLES11.GL_CLAMP_TO_EDGE);
+                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_WRAP_T, GLES11.GL_CLAMP_TO_EDGE);
                 GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MAG_FILTER, GLES11.GL_LINEAR);
                 GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MIN_FILTER, GLES11.GL_LINEAR);
                 GLUtils.texImage2D(GLES11.GL_TEXTURE_2D, 0, bmp, 0);
