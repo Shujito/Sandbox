@@ -29,7 +29,7 @@ public class GLRenderer implements Renderer
         0, 1,
         1, 1,
     };
-    final int[] textures = new int[2];
+    final int[] textures = new int[1];
     final Buffer vertices;
     final Buffer coords;
     
@@ -57,27 +57,15 @@ public class GLRenderer implements Renderer
             // create
             GLES11.glEnable(GLES11.GL_TEXTURE_2D);
             GLES11.glGenTextures(this.textures.length, this.textures, 0);
-            {
-                GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
-                Bitmap bmp = BitmapFactory.decodeResource(SandboxApplication.getInstance().getResources(), android.R.drawable.sym_def_app_icon);
-                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MAG_FILTER, GLES11.GL_LINEAR);
-                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MIN_FILTER, GLES11.GL_LINEAR);
-                GLUtils.texImage2D(GLES11.GL_TEXTURE_2D, 0, bmp, 0);
-                GLES11.glEnable(GLES11.GL_BLEND);
-                GLES11.glBlendFunc(GLES11.GL_SRC_ALPHA, GLES11.GL_ONE_MINUS_SRC_ALPHA);
-                bmp.recycle();
-            }
-            {
-                GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[1]);
-                InputStream is = SandboxApplication.getInstance().getAssets().open("heart.png");
-                Bitmap bmp = BitmapFactory.decodeStream(is);
-                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MAG_FILTER, GLES11.GL_LINEAR);
-                GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MIN_FILTER, GLES11.GL_LINEAR);
-                GLUtils.texImage2D(GLES11.GL_TEXTURE_2D, 0, bmp, 0);
-                GLES11.glEnable(GLES11.GL_BLEND);
-                GLES11.glBlendFunc(GLES11.GL_SRC_ALPHA, GLES11.GL_ONE_MINUS_SRC_ALPHA);
-                bmp.recycle();
-            }
+            GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
+            InputStream is = SandboxApplication.getInstance().getAssets().open("heart.png");
+            Bitmap bmp = BitmapFactory.decodeStream(is);
+            GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MAG_FILTER, GLES11.GL_LINEAR);
+            GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MIN_FILTER, GLES11.GL_LINEAR);
+            GLUtils.texImage2D(GLES11.GL_TEXTURE_2D, 0, bmp, 0);
+            GLES11.glEnable(GLES11.GL_BLEND);
+            GLES11.glBlendFunc(GLES11.GL_SRC_ALPHA, GLES11.GL_ONE_MINUS_SRC_ALPHA);
+            bmp.recycle();
         }
         catch (Exception ex)
         {
@@ -116,7 +104,7 @@ public class GLRenderer implements Renderer
         GLES11.glColor4f(1, 0, 0, 1);
         GLES11.glTranslatef(0, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
-        GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[1]);
+        GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
         GLES11.glColor4f(0, 1, 0, 1);
         GLES11.glTranslatef(-32, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
@@ -124,7 +112,7 @@ public class GLRenderer implements Renderer
         GLES11.glColor4f(0, 0, 1, 1);
         GLES11.glTranslatef(-32, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
-        GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[1]);
+        GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
         GLES11.glColor4f(1, 1, 1, 1);
         GLES11.glTranslatef(-32, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
