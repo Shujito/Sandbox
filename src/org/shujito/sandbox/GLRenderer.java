@@ -117,7 +117,7 @@ public class GLRenderer implements Renderer
         GLES11.glTranslatef(-32, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
         GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
-        GLES11.glColor4f(0, 0, 0, 0.5f);
+        GLES11.glColor4f(0, 0, 0, 0.75f);
         GLES11.glTranslatef(-32, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
         GLES11.glPopMatrix();
