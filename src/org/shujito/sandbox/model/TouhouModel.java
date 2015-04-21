@@ -2,20 +2,14 @@ package org.shujito.sandbox.model;
 
 import java.util.Date;
 
+import org.shujito.sandbox.db.schema.TouhouColumns;
+
 import android.content.ContentValues;
 import android.database.Cursor;
 
-public class TouhouModel
+public class TouhouModel implements TouhouColumns
 {
     public static final String TAG = TouhouModel.class.getSimpleName();
-    public static final String TOUHOUS = "touhous";
-    public static final String UUID = "uuid";
-    public static final String CREATED_AT = "created_at";
-    public static final String UPDATED_AT = "updated_at";
-    public static final String DELETED_AT = "deleted_at";
-    public static final String NAME = "name";
-    public static final String LAST_NAME = "last_name";
-    public static final String TITLE = "title";
     public final String uuid;
     public final Date createdAt;
     public final Date updatedAt;

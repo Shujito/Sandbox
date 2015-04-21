@@ -19,9 +19,9 @@ public class GLRenderer implements Renderer
     public static final String TAG = GLRenderer.class.getSimpleName();
     final float[] vVertices = {
         0, 0,
-        128, 0,
-        0, 128,
-        128, 128,
+        256, 0,
+        0, 256,
+        256, 256,
     };
     final float[] vCoords = {
         0, 0,
@@ -32,6 +32,8 @@ public class GLRenderer implements Renderer
     final int[] textures = new int[1];
     final Buffer vertices;
     final Buffer coords;
+    int width;
+    int height;
     
     public GLRenderer()
     {
@@ -66,6 +68,7 @@ public class GLRenderer implements Renderer
             GLES11.glEnable(GLES11.GL_BLEND);
             GLES11.glBlendFunc(GLES11.GL_SRC_ALPHA, GLES11.GL_ONE_MINUS_SRC_ALPHA);
             bmp.recycle();
+            is.close();
         }
         catch (Exception ex)
         {
@@ -76,6 +79,8 @@ public class GLRenderer implements Renderer
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height)
     {
+        this.width = width;
+        this.height = height;
         float ratio = (float) width / (float) height;
         float scaledWidth = ratio * 480.f;
         float scaledHeight = 480.f;
@@ -106,19 +111,19 @@ public class GLRenderer implements Renderer
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
         GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
         GLES11.glColor4f(0, 1, 0, 1);
-        GLES11.glTranslatef(-32, 32, 0);
+        GLES11.glTranslatef(-64, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
         GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
         GLES11.glColor4f(0, 0, 1, 1);
-        GLES11.glTranslatef(-32, 32, 0);
+        GLES11.glTranslatef(-64, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
         GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
         GLES11.glColor4f(1, 1, 1, 1);
-        GLES11.glTranslatef(-32, 32, 0);
+        GLES11.glTranslatef(-64, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
         GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
         GLES11.glColor4f(0, 0, 0, 0.75f);
-        GLES11.glTranslatef(-32, 32, 0);
+        GLES11.glTranslatef(-64, 32, 0);
         GLES11.glDrawArrays(GLES11.GL_TRIANGLE_STRIP, 0, 4);
         GLES11.glPopMatrix();
         // disable features

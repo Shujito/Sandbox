@@ -42,6 +42,6 @@ public class Database extends SQLiteOpenHelper
         db.execSQL("create temporary table temp_touhous as select * from touhous");
         db.execSQL("drop table touhous");
         this.onCreate(db);
-        // TODO: build insert using pragma table_info
+        // TODO: build insert using pragma table_info(table)
     }
 }
