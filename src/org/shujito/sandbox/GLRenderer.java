@@ -61,6 +61,7 @@ public class GLRenderer implements Renderer
             GLES11.glGenTextures(this.textures.length, this.textures, 0);
             GLES11.glBindTexture(GLES11.GL_TEXTURE_2D, this.textures[0]);
             InputStream is = SandboxApplication.getInstance().getAssets().open("heart.png");
+            //InputStream is = SandboxApplication.getInstance().createPackageContext("org.shujito.something", 0).getAssets().open("heart.png");
             Bitmap bmp = BitmapFactory.decodeStream(is);
             GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MAG_FILTER, GLES11.GL_LINEAR);
             GLES11.glTexParameteri(GLES11.GL_TEXTURE_2D, GLES11.GL_TEXTURE_MIN_FILTER, GLES11.GL_LINEAR);
