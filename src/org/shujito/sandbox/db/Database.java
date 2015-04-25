@@ -17,8 +17,9 @@ public class Database extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
-        db.execSQL("create table touhous("
-            + "uuid text primary key on conflict replace default (hex(randomblob(16))),"
+        db.execSQL("create view if not exists unixtime as select cast(((julianday('now') - julianday('1970-01-01')) * 86400000) as integer) as unixtime");
+        db.execSQL("create table if not exists touhous("
+            + "uuid text primary key on conflict replace not null on conflict ignore default (hex(randomblob(16))),"
             + "created_at integer not null on conflict ignore default(cast(((julianday('now') - julianday('1970-01-01')) * 86400000) as integer)),"
             + "updated_at integer not null on conflict ignore default(cast(((julianday('now') - julianday('1970-01-01')) * 86400000) as integer)),"
             + "deleted_at integer,"
