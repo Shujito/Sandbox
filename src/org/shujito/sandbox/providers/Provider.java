@@ -26,7 +26,9 @@ public final class Provider extends ContentProvider
     
     private static String getPath(Uri uri)
     {
-        return uri.getPathSegments().get(0);
+        if (uri.getPathSegments().size() > 0)
+            return uri.getPathSegments().get(0);
+        return null;
     }
     
     @Override
@@ -52,30 +54,46 @@ public final class Provider extends ContentProvider
     @Override
     public Uri insert(Uri uri, ContentValues values)
     {
-        throw new UnsupportedOperationException();
+        long id = this.mDatabase.getWritableDatabase().insert(getPath(uri), null, values);
+        return uri.buildUpon().appendPath(String.valueOf(id)).build();
     }
     
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
-        throw new UnsupportedOperationException();
+        //return this.mDatabase.getReadableDatabase().rawQuery(selection, selectionArgs);
+        return this.mDatabase.getReadableDatabase().query(getPath(uri), projection, selection, selectionArgs, null, null, sortOrder);
     }
     
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
     {
-        throw new UnsupportedOperationException();
+        return this.mDatabase.getWritableDatabase().update(getPath(uri), values, selection, selectionArgs);
     }
     
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs)
     {
-        throw new UnsupportedOperationException();
+        return this.mDatabase.getWritableDatabase().delete(getPath(uri), selection, selectionArgs);
     }
     
     @Override
     public int bulkInsert(Uri uri, ContentValues[] values)
     {
-        throw new UnsupportedOperationException();
+        int count = 0;
+        try
+        {
+            this.mDatabase.getWritableDatabase().beginTransaction();
+            for (ContentValues value : values)
+            {
+                this.mDatabase.getWritableDatabase().insert(getPath(uri), null, value);
+                count++;
+            }
+        }
+        finally
+        {
+            this.mDatabase.getWritableDatabase().endTransaction();
+        }
+        return count;
     }
 }
