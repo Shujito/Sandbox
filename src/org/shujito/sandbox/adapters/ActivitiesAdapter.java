@@ -36,15 +36,22 @@ public class ActivitiesAdapter extends BaseAdapter
     
     private final List<ActivityInfo> mActivityInfos;
     
-    public ActivitiesAdapter(Context context) throws NameNotFoundException
+    public ActivitiesAdapter(Context context)
     {
-        ActivityInfo[] vInfos = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_ACTIVITIES).activities;
-        this.mActivityInfos = new ArrayList<>();
-        for (ActivityInfo ainfo : vInfos)
+        try
         {
-            if (TextUtils.equals(ainfo.name, MainActivity.class.getName()))
-                continue;
-            this.mActivityInfos.add(ainfo);
+            ActivityInfo[] vInfos = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_ACTIVITIES).activities;
+            this.mActivityInfos = new ArrayList<>();
+            for (ActivityInfo ainfo : vInfos)
+            {
+                if (TextUtils.equals(ainfo.name, MainActivity.class.getName()))
+                    continue;
+                this.mActivityInfos.add(ainfo);
+            }
+        }
+        catch (NameNotFoundException e)
+        {
+            throw new RuntimeException(e);
         }
     }
     

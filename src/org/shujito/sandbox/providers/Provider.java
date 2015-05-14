@@ -26,8 +26,9 @@ public final class Provider extends ContentProvider
     
     private static String getPath(Uri uri)
     {
-        if (uri.getPathSegments().size() > 0)
+        if (uri.getPathSegments().size() == 0)
             return uri.getPathSegments().get(0);
+        //throw new IllegalStateException("The uri '" + uri + "' has multiple path segments");
         return null;
     }
     

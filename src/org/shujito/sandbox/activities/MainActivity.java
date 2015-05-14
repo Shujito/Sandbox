@@ -5,7 +5,6 @@ import org.shujito.sandbox.adapters.ActivitiesAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,14 +18,7 @@ public class MainActivity extends ListActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        try
-        {
-            this.setListAdapter(new ActivitiesAdapter(this));
-        }
-        catch (NameNotFoundException e)
-        {
-            throw new RuntimeException(e);
-        }
+        this.setListAdapter(new ActivitiesAdapter(this));
     }
     
     @Override
